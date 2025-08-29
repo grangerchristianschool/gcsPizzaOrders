@@ -136,6 +136,7 @@ def main():
         week_orders['Total'] = week_orders['Slices of Cheese']+week_orders['Slices of Pepperoni']+week_orders['Slices of Sausage']
         week_orders['Pizza $'] = week_orders['Total'].map(pizza_pricing)
         week_orders['Meal Deal $'] = np.where(week_orders['Meal Deal?']=='Yes', 3, 0)
+        week_orders['A La Cart'] = week_orders['A La Cart'].fillna('0')
         week_orders['Cart $'] = week_orders['A La Cart'].str.count('\$')
         week_orders['Cart $'] = week_orders['Cart $'].fillna(0)
         week_orders['Total $'] = week_orders['Pizza $']+week_orders['Meal Deal $']+week_orders['Cart $']
