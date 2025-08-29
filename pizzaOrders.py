@@ -115,9 +115,7 @@ def main():
     
     ###################################
     
-    
     #ordersheet = loadOrderSheetLocal()
-    
     
     ordersheet['Confirm Order Date'] = pd.to_datetime(ordersheet['Confirm Order Date'])
     ordersheet['Confirm Order Date'] = ordersheet['Confirm Order Date'].dt.date
@@ -175,6 +173,7 @@ def main():
         st.markdown("<h2>Pizza Order Info</h2>",unsafe_allow_html=True)
         pizzas_needed = week_orders[['Slices of Cheese','Slices of Pepperoni','Slices of Sausage']].sum().reset_index()
         pizzas_needed.columns=['Type','Slices Ordered']
+        pizzas_needed['Slices Ordered'] = pizzas_needed['Slices Ordered'].astype(int)
         pizzas_needed['Type'] = pizzas_needed['Type'].str.replace('Slices of ','')
         pizzas_needed['Pizzas Needed'] = np.ceil(pizzas_needed['Slices Ordered']/8)
         st.dataframe(pizzas_needed, hide_index=True)
