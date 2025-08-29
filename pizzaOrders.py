@@ -112,9 +112,6 @@ def main():
     ordersheet = load_orders(sheet_id, worksheet_name)
     ordersheet['A La Cart'] = np.where(ordersheet['A La Cart']=='','x',ordersheet['A La Cart'])
     st.dataframe(ordersheet)
-    st.write('x')
-    st.write(ordersheet['A La Cart'].iloc[0])
-    st.write('x')
     
     ###################################
     
@@ -142,7 +139,8 @@ def main():
         week_orders['Pizza $'] = week_orders['Total'].map(pizza_pricing)
         week_orders['Meal Deal $'] = np.where(week_orders['Meal Deal?']=='Yes', 3, 0)
         week_orders['A La Cart'] = week_orders['A La Cart'].fillna('0')
-        week_orders['Cart $'] = week_orders['A La Cart'].str.count('\$')
+        #week_orders['Cart $'] = week_orders['A La Cart'].str.count('\$')
+        week_orders['Cart $'] = week_orders['A La Cart'].count('\$')
         week_orders['Cart $'] = week_orders['Cart $'].fillna(0)
         week_orders['Total $'] = week_orders['Pizza $']+week_orders['Meal Deal $']+week_orders['Cart $']
         parent_owed = week_orders.groupby(['Parent Name','Parent Email','Confirm Order Date'],as_index=False)['Total $'].sum()
