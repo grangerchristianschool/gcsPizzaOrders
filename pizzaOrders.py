@@ -111,6 +111,9 @@ def main():
     ### CHANGE FOR TESTING LOCALLY ###
     ordersheet = load_orders(sheet_id, worksheet_name)
     st.dataframe(ordersheet)
+    st.write(ordersheet['A La Cart'].iloc[0])
+    st.write(type(ordersheet['A La Cart'].iloc[0]))
+    
     ###################################
     
     
