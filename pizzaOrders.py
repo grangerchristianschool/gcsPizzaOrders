@@ -121,9 +121,7 @@ def main():
     ordersheet['Slices of Cheese'] = ordersheet['Slices of Cheese'].astype(int)
     ordersheet['Slices of Pepperoni'] = ordersheet['Slices of Pepperoni'].astype(int)
     ordersheet['Slices of Sausage'] = ordersheet['Slices of Sausage'].astype(int)
-    
-    st.dataframe(ordersheet)
-    
+        
     ###################################
     
     #ordersheet = loadOrderSheetLocal()
@@ -132,7 +130,6 @@ def main():
     ordersheet['Confirm Order Date'] = ordersheet['Confirm Order Date'].dt.date
     ordersheet = ordersheet.sort_values(by='Confirm Order Date',ascending=False)
     ordersheet = ordersheet.fillna(0)
-
 
     all_dates = list(ordersheet['Confirm Order Date'].unique())
     date_selection = st.selectbox('Orders For', all_dates)
@@ -143,7 +140,6 @@ def main():
         
         week_orders = ordersheet[ordersheet['Confirm Order Date']==date_selection]
 
-        st.write(week_orders)
         week_orders['A La Cart'] = np.where(week_orders['Meal Deal?']=='Yes',0,week_orders['A La Cart'])
         week_orders['Total'] = week_orders['Slices of Cheese']+week_orders['Slices of Pepperoni']+week_orders['Slices of Sausage']
         week_orders['Pizza $'] = week_orders['Total'].map(pizza_pricing)
@@ -185,7 +181,6 @@ def main():
         st.markdown("<h2>Pizza Order Info</h2>",unsafe_allow_html=True)
         pizzas_needed = week_orders[['Slices of Cheese','Slices of Pepperoni','Slices of Sausage']].sum().reset_index()
         pizzas_needed.columns=['Type','Slices Ordered']
-        st.write(pizzas_needed)
         pizzas_needed['Type'] = pizzas_needed['Type'].str.replace('Slices of ','')
         pizzas_needed['Pizzas Needed'] = np.ceil(pizzas_needed['Slices Ordered']/8)
         st.dataframe(pizzas_needed, hide_index=True)
