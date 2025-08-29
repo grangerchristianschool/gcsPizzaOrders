@@ -117,6 +117,10 @@ def main():
     ordersheet['Slices of Pepperoni'] = np.where(ordersheet['Slices of Pepperoni']=='',0,ordersheet['Slices of Pepperoni'])
     ordersheet['Slices of Sausage'] = ordersheet['Slices of Sausage'].fillna(0)
     ordersheet['Slices of Sausage'] = np.where(ordersheet['Slices of Sausage']=='',0,ordersheet['Slices of Sausage'])
+
+    ordersheet['Slices of Cheese'] = ordersheet['Slices of Cheese'].astype(int)
+    ordersheet['Slices of Pepperoni'] = ordersheet['Slices of Pepperoni'].astype(int)
+    ordersheet['Slices of Sausage'] = ordersheet['Slices of Sausage'].astype(int)
     
     st.dataframe(ordersheet)
     
@@ -139,6 +143,7 @@ def main():
         
         week_orders = ordersheet[ordersheet['Confirm Order Date']==date_selection]
 
+        st.write(week_orders)
         week_orders['A La Cart'] = np.where(week_orders['Meal Deal?']=='Yes',0,week_orders['A La Cart'])
         week_orders['Total'] = week_orders['Slices of Cheese']+week_orders['Slices of Pepperoni']+week_orders['Slices of Sausage']
         week_orders['Pizza $'] = week_orders['Total'].map(pizza_pricing)
