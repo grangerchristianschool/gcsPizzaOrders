@@ -58,6 +58,7 @@ def create_pdf(orders_by_grade, date_selection):
 
 base_dir = os.path.dirname(__file__)
 file_path = os.path.join(base_dir, 'Files')
+logo = "{}/gcs_logo_transparent.png".format(file_path)
 
 pizza_pricing = {1: 3, 2: 5, 3: 8, 4: 10, 5: 13, 
                 6:16,7:18, 8: 20, 9: 24, 10: 26}
@@ -105,6 +106,7 @@ def load_orders(sheet_id, worksheet_name='Form Responses 1'):
 
 def main():
     st.title("🍕 GCS Pizza Order Tracker 🍕")
+    st.image(logo, width=250)
     sheet_id = '1alsiI627AS_fQPTJ6BrgCElAIGBE-T-GU2XKIvo0GJk'
     worksheet_name = 'Form Responses 1'
 
