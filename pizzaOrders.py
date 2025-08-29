@@ -111,6 +111,13 @@ def main():
     ### CHANGE FOR TESTING LOCALLY ###
     ordersheet = load_orders(sheet_id, worksheet_name)
     ordersheet['A La Cart'] = np.where(ordersheet['A La Cart']=='','x',ordersheet['A La Cart'])
+    ordersheet['Slices of Cheese'] = ordersheet['Slices of Cheese'].fillna(0)
+    ordersheet['Slices of Cheese'] = np.where(ordersheet['Slices of Cheese']=='',0,ordersheet['Slices of Cheese'])
+    ordersheet['Slices of Pepperoni'] = ordersheet['Slices of Pepperoni'].fillna(0)
+    ordersheet['Slices of Pepperoni'] = np.where(ordersheet['Slices of Pepperoni']=='',0,ordersheet['Slices of Pepperoni'])
+    ordersheet['Slices of Sausage'] = ordersheet['Slices of Sausage'].fillna(0)
+    ordersheet['Slices of Sausage'] = np.where(ordersheet['Slices of Sausage']=='',0,ordersheet['Slices of Sausage'])
+    
     st.dataframe(ordersheet)
     
     ###################################
@@ -174,7 +181,6 @@ def main():
         pizzas_needed = week_orders[['Slices of Cheese','Slices of Pepperoni','Slices of Sausage']].sum().reset_index()
         pizzas_needed.columns=['Type','Slices Ordered']
         st.write(pizzas_needed)
-        pizzas_needed['Slices Ordered'] = pizzas_needed['Slices Ordered'].astype(int)
         pizzas_needed['Type'] = pizzas_needed['Type'].str.replace('Slices of ','')
         pizzas_needed['Pizzas Needed'] = np.ceil(pizzas_needed['Slices Ordered']/8)
         st.dataframe(pizzas_needed, hide_index=True)
