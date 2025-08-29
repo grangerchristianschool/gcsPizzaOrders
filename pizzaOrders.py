@@ -73,7 +73,7 @@ def convert_df_to_csv(df):
 # Page configuration
 st.set_page_config(
     page_title="Google Sheets to DataFrame",
-    page_icon="📊",
+    page_icon="🍕",
     layout="wide"
 )
 
