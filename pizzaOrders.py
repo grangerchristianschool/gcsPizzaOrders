@@ -20,13 +20,26 @@ st.set_page_config(
 )
 
 @st.cache_resource
-def get_gspread_client():
+def get_gspread_client_local():
     try:
         scope = [
             "https://spreadsheets.google.com/feeds",
             "https://www.googleapis.com/auth/drive"
         ]
         creds = Credentials.from_service_account_info(SERVICE_ACCOUNT_CREDS, scopes=scope)
+        return gspread.authorize(creds)
+    except Exception as e:
+        st.error(f"Error authenticating with Google Sheets: {str(e)}")
+        return None
+    
+@st.cache_resource
+def get_gspread_client():
+    try:
+        scope = [
+            "https://spreadsheets.google.com/feeds",
+            "https://www.googleapis.com/auth/drive"
+        ]
+        creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=scope)
         return gspread.authorize(creds)
     except Exception as e:
         st.error(f"Error authenticating with Google Sheets: {str(e)}")
