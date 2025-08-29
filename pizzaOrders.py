@@ -9,8 +9,8 @@ import os
 base_dir = os.path.dirname(__file__)
 file_path = os.path.join(base_dir, 'Files')
 #hitterproj = pd.read_csv(f'{file_path}/hitter_proj_withids.csv')
-with open(f'{file_path}/service_account.json') as f:
-    SERVICE_ACCOUNT_CREDS = json.load(f)
+#with open(f'{file_path}/service_account.json') as f:
+#    SERVICE_ACCOUNT_CREDS = json.load(f)
 
 # Page configuration
 st.set_page_config(
@@ -19,19 +19,6 @@ st.set_page_config(
     layout="wide"
 )
 
-@st.cache_resource
-def get_gspread_client_local():
-    try:
-        scope = [
-            "https://spreadsheets.google.com/feeds",
-            "https://www.googleapis.com/auth/drive"
-        ]
-        creds = Credentials.from_service_account_info(SERVICE_ACCOUNT_CREDS, scopes=scope)
-        return gspread.authorize(creds)
-    except Exception as e:
-        st.error(f"Error authenticating with Google Sheets: {str(e)}")
-        return None
-    
 @st.cache_resource
 def get_gspread_client():
     try:
