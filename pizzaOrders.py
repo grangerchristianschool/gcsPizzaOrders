@@ -173,7 +173,7 @@ def main():
 
         parent_owed = pd.merge(parent_owed, pay_methods, how='left', on=['Parent','Email'])
         parent_owed_nogroup = parent_owed.copy()
-        parent_owed = parent_owed_nogroup.groupby(['Parent','Email','Date','Pay Method','Owes $'])
+        parent_owed = parent_owed_nogroup.groupby(['Parent','Email','Date','Pay Method'], as_index=False)['Owes $'].sum()
         
         if len(parent_owed)<=10:
             st.dataframe(parent_owed, hide_index=True, width=575)
