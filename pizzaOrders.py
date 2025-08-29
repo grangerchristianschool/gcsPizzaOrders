@@ -110,9 +110,11 @@ def main():
 
     ### CHANGE FOR TESTING LOCALLY ###
     ordersheet = load_orders(sheet_id, worksheet_name)
+    ordersheet['A La Cart'] = np.where(ordersheet['A La Cart']=='','0',ordersheet['A La Cart'])
     st.dataframe(ordersheet)
+    st.write('x')
     st.write(ordersheet['A La Cart'].iloc[0])
-    st.write(type(ordersheet['A La Cart'].iloc[0]))
+    st.write('x')
     
     ###################################
     
