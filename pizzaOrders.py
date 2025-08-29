@@ -105,11 +105,13 @@ def load_orders(sheet_id, worksheet_name='Form Responses 1'):
     return(df)
 
 def main():
-    headcol1, headcol2 = st.columns([1,1])
+    headcol1, headcol2, headcol3 = st.columns([1,3,1])
     with headcol1:
         st.image(logo, width=250)
     with headcol2:
         st.title("🍕 GCS Pizza Order Tracker 🍕")
+    with headcol3:
+        st.image(logo, width=250)
     
     sheet_id = '1alsiI627AS_fQPTJ6BrgCElAIGBE-T-GU2XKIvo0GJk'
     worksheet_name = 'Form Responses 1'
