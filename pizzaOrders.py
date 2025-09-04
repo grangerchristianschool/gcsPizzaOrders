@@ -188,12 +188,6 @@ def main():
         csv = convert_df_to_csv(parent_owed)
         st.download_button(label="Download CSV", data=csv, file_name=file_name, mime='text/csv')
 
-        st.markdown("<h3>Staff Orders</h3>",unsafe_allow_html=True)
-        staff_orders = ordersheet[ordersheet['Grade']=='Staff']
-        staff_orders = staff_orders[['Parent Name','Confirm Order Date','Slices of Cheese','Slices of Pepperoni','Slices of Sausage','Meal Deal?','A La Cart','How Will You Pay?']]
-        staff_orders.columns=['Person','Date','Cheese','Pepperoni','Sausage','Meal?','Cart','Payment']
-        st.dataframe(staff_orders,width=600,hide_index=True)
-
 
     with maincol2:
         st.markdown("<h2>Pizza Order Info</h2>",unsafe_allow_html=True)
@@ -229,6 +223,12 @@ def main():
             file_name=f"Orders_{date_selection}.pdf",
             mime="application/pdf"
         )
+
+    st.markdown("<h3>Staff Orders</h3>",unsafe_allow_html=True)
+    staff_orders = ordersheet[ordersheet['Grade']=='Staff']
+    staff_orders = staff_orders[['Parent Name','Confirm Order Date','Slices of Cheese','Slices of Pepperoni','Slices of Sausage','Meal Deal?','A La Cart','How Will You Pay?']]
+    staff_orders.columns=['Person','Date','Cheese','Pepperoni','Sausage','Meal?','Cart','Payment']
+    st.dataframe(staff_orders,width=600,hide_index=True)
 
     st.markdown("<hr>", unsafe_allow_html=True)
     
