@@ -228,7 +228,7 @@ def main():
     staff_orders = ordersheet[ordersheet['Grade']=='Staff']
     staff_orders = staff_orders[['Parent Name','Confirm Order Date','Slices of Cheese','Slices of Pepperoni','Slices of Sausage','Meal Deal?','A La Cart','How Will You Pay?']]
     staff_orders.columns=['Person','Date','Cheese','Pepperoni','Sausage','Meal?','Cart','Payment']
-    st.dataframe(staff_orders,width=600,hide_index=True)
+    st.dataframe(staff_orders,hide_index=True)
 
     st.markdown("<hr>", unsafe_allow_html=True)
     
