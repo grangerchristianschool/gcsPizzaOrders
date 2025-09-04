@@ -192,7 +192,7 @@ def main():
         staff_orders = ordersheet[ordersheet['Grade']=='Staff']
         st.write(staff_orders.columns)
         #[['Parent Name','Confirm Order Date','Slices of Cheese','Slices of Pepperoni','Slices of Sausage','Meal Deal','A La Cart','How Will You Pay?']]
-        staff_orders.columns=['Person','Date','Cheese','Pepperoni','Sausage','Meal?','Cart','Payment']
+        #staff_orders.columns=['Person','Date','Cheese','Pepperoni','Sausage','Meal?','Cart','Payment']
         st.dataframe(staff_orders,hide_index=True)
 
 
