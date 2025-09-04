@@ -187,6 +187,13 @@ def main():
 
         csv = convert_df_to_csv(parent_owed)
         st.download_button(label="Download CSV", data=csv, file_name=file_name, mime='text/csv')
+
+        st.markdown("<h3>Staff Orders</h3>",unsafe_allow_html=True)
+        staff_orders = ordersheet[ordersheet['Grade']=='Staff'][['Parent Name','Confirm Order Date','Slices of Cheese','Slices of Pepperoni','Slices of Sausage','Meal Deal','A La Cart','How Will You Pay?']]
+        staff_orders.columns=['Person','Date','Cheese','Pepperoni','Sausage','Meal?','Cart','Payment']
+        st.dataframe(staff_orders,hide_index=True)
+
+
     with maincol2:
         st.markdown("<h2>Pizza Order Info</h2>",unsafe_allow_html=True)
         pizzas_needed = week_orders[['Slices of Cheese','Slices of Pepperoni','Slices of Sausage']].sum().reset_index()
