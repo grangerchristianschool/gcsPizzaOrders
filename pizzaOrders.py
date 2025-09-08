@@ -159,6 +159,7 @@ def main():
         week_orders['Total $'] = week_orders['Pizza $']+week_orders['Meal Deal $']+week_orders['Cart $']
         st.write(week_orders)
         parent_owed = week_orders.groupby(['Parent Name','Parent Email','Confirm Order Date'],as_index=False)['Total $'].sum()
+        st.write(parent_owed)
         parent_owed = parent_owed[parent_owed['Total $']>0].sort_values(by='Parent Email')
         parent_owed.columns=['Parent','Email','Date','Owes $']
 
