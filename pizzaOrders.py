@@ -157,9 +157,7 @@ def main():
         week_orders['Cart $'] = week_orders['A La Cart'].str.count('\$')
         week_orders['Cart $'] = week_orders['Cart $'].fillna(0)
         week_orders['Total $'] = week_orders['Pizza $']+week_orders['Meal Deal $']+week_orders['Cart $']
-        st.write(week_orders)
         parent_owed = week_orders.groupby(['Parent Name','Parent Email','Confirm Order Date'],as_index=False)['Total $'].sum()
-        st.write(parent_owed)
         parent_owed = parent_owed[parent_owed['Total $']>0].sort_values(by='Parent Email')
         parent_owed.columns=['Parent','Email','Date','Owes $']
 
@@ -171,6 +169,7 @@ def main():
                                                       np.where(pay_methods['Pay Method Raw'].str.contains('Check'), 'Check', '0')))
         
         pay_methods = pay_methods[['Parent','Email','Pay Method']]
+        pay_methods = pay_methods.drop_duplicates()
         st.markdown("<h2>Money Owed Summary</h2>", unsafe_allow_html=True)
 
         parent_owed = pd.merge(parent_owed, pay_methods, how='left', on=['Parent','Email'])
