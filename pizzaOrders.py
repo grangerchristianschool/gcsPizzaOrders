@@ -134,7 +134,7 @@ def main():
     
     #ordersheet = loadOrderSheetLocal()
     
-    ordersheet['Email'] = ordersheet['Parent Email'].str.lower()
+    ordersheet['Parent Email'] = ordersheet['Parent Email'].str.lower()
     
 
     ordersheet['Confirm Order Date'] = pd.to_datetime(ordersheet['Confirm Order Date'])
