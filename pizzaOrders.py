@@ -134,6 +134,15 @@ def main():
     
     #ordersheet = loadOrderSheetLocal()
     
+    try:
+        ordersheet['Email'] = ordersheet['Email'].str.lower()
+    except:
+        pass
+    try:
+        ordersheet['Email'] = ordersheet['Email'].lower()
+    except:
+        pass
+
     ordersheet['Confirm Order Date'] = pd.to_datetime(ordersheet['Confirm Order Date'])
     ordersheet['Confirm Order Date'] = ordersheet['Confirm Order Date'].dt.date
     ordersheet = ordersheet.sort_values(by='Confirm Order Date',ascending=False)
