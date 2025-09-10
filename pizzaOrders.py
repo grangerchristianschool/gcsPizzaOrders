@@ -135,11 +135,11 @@ def main():
     #ordersheet = loadOrderSheetLocal()
     
     try:
-        ordersheet['Email'] = ordersheet['Email'].str.lower()
+        ordersheet['Email'] = ordersheet['Parent Email'].str.lower()
     except:
         pass
     try:
-        ordersheet['Email'] = ordersheet['Email'].lower()
+        ordersheet['Email'] = ordersheet['Parent Email'].lower()
     except:
         pass
     st.write(ordersheet)
