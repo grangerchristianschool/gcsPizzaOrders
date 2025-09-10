@@ -142,7 +142,7 @@ def main():
         ordersheet['Email'] = ordersheet['Email'].lower()
     except:
         pass
-
+    st.write(ordersheet)
     ordersheet['Confirm Order Date'] = pd.to_datetime(ordersheet['Confirm Order Date'])
     ordersheet['Confirm Order Date'] = ordersheet['Confirm Order Date'].dt.date
     ordersheet = ordersheet.sort_values(by='Confirm Order Date',ascending=False)
