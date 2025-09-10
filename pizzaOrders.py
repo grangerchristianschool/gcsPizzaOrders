@@ -180,9 +180,9 @@ def main():
         parent_owed = parent_owed_nogroup.groupby(['Parent','Email','Date','Pay Method'], as_index=False)['Owes $'].sum()
         
         if len(parent_owed)<=10:
-            st.dataframe(parent_owed, hide_index=True, width=575)
+            st.dataframe(parent_owed, hide_index=True, width=650)
         else:
-            st.dataframe(parent_owed, hide_index=True, height=570,width=575)
+            st.dataframe(parent_owed, hide_index=True, height=570,width=650)
 
         file_name = 'paymentsowed.csv'#st.text_input("Download Data as CSV:", value="projdata.csv")
         #@st.cache_data
