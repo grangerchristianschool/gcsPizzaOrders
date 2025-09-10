@@ -32,7 +32,7 @@ def check_password():
             st.error("Incorrect password. Please try again.")
     
     if not st.session_state.authenticated:
-        st.text_input("Enter Password (can be found in Resource Glossary at ftmff.substack.com", type="password", key="password", on_change=password_entered)
+        st.text_input("Enter Password", type="password", key="password", on_change=password_entered)
         return False
     return True
 
