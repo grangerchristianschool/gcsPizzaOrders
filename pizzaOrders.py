@@ -178,6 +178,10 @@ def main():
         parent_owed = pd.merge(parent_owed, pay_methods, how='left', on=['Parent','Email'])
         parent_owed_nogroup = parent_owed.copy()
         parent_owed = parent_owed_nogroup.groupby(['Parent','Email','Date','Pay Method'], as_index=False)['Owes $'].sum()
+
+        credit_check = st.checkbox('Show only credit card orders',value=False)
+        if credit_check:
+            parent_owed = parent_owed[parent_owed['Pay Method']=='Credit']
         
         if len(parent_owed)<=10:
             st.dataframe(parent_owed, hide_index=True, width=650)
